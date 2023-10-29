@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'base.html'%}
+
+    {% block content %}
+
+    {% if user.is_authenticated %}
+    <div>Hello World</div>
+    {% else %}
+    <div class="col-lg-6 offset-lg-3">
+        <h1>Login</h1>
+        <br>
+        <form method="POST" action="{% url 'home' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input type="text" class="form-control" id="exampleInputEmail1" 
+                aria-describedby="emailHelp" name="Username" placeholder="Username" required>
+              </div>
+              <div class="mb-3">
+                <input type="password" class="form-control" id="exampleInputPassword1"
+                name="Password" placeholder="Password" required>
+              </div>
+              <button type="submit" class="btn btn-secondary">Login</button>
+        </form>
+    </div>
+    {% endif %}
+    {% endblock %}
+</body>
+</html>
